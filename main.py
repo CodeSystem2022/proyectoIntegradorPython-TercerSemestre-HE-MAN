@@ -37,7 +37,7 @@ def mostrar_menu():
     print(Fore.CYAN+"7. Buscar contacto por nombre"+ Style.RESET_ALL)
     print(Fore.CYAN+"8. Mostrar lista de contactos"+ Style.RESET_ALL)
     print(Fore.CYAN+"9. Salir"+ Style.RESET_ALL)
-// Emmanuel Sbona
+# Emmanuel Sbona
 def agregar_contacto2(Contacto2):
     cursor.execute('''
         INSERT INTO contactop (nombre, telefono, empresa, cargo,edad,correo,  whatsapp, facebook, instagram)
@@ -140,4 +140,58 @@ def buscar_contacto(nombre):
             print(resultado)
     else:
         print(Fore.GREEN+"No se encontraron contactos con ese nombre."+Style.RESET_ALL)
+
+# ACA PARTE SEBA
+#
+#
+
+# Función para modificar un contacto en la base de datos
+#Punto3
+def modificar_contacto():
+    try:
+        tabla = None # definimos tabla
+        while tabla not in ("1", "2"):
+            tabla = input( #solicitamos al usuario que ingrese el número de la tabla en la que desea modificar el contacto
+                "Ingrese el número de tabla en la que desea modificar el contacto:\n1. ContactoPersonal\n2. ContactoProfesional\n")
+            if tabla not in ("1", "2"): #Si la entrada no es "1" o "2", se muestra un mensaje de error
+                print("Opción no válida. Por favor, ingrese 1 o 2.") #mensaje de error
+        tabla = int(tabla) #pasamos la variable tabla a un entero.para poder comparar los valore en el if .
+        contacto_id = None
+        while not isinstance(contacto_id, int):  # Esto se ejecutara mientras la condición sea verdadera, es decir,
+            # mientras contacto_id no sea un entero isinstance verifica que contacto_id
+            try:
+                contacto_id = int(input("Ingrese el ID del contacto a modificar: "))
+            except ValueError:
+                print("ID INCORRECTO. Por favor,Intentelo nuevamente.")
+        with conexion:
+            with conexion.cursor() as cursor:
+                if tabla == 1:
+                    nombre = input("Ingrese el nuevo nombre: ")
+                    telefono = input("Ingrese el nuevo teléfono: ")
+                    empresa = input("Ingrese la nueva empresa: ")
+                    cargo = input("Ingrese el nuevo cargo: ")
+                    cursor.execute( 'UPDATE contactos SET nombre = %s, telefono = %s, empresa = %s, cargo = %s WHERE id = %s',
+                        (nombre, telefono, empresa, cargo, contacto_id))
+                    print("Contacto modificado exitosamente en la tabla contactos.")
+                elif tabla == 2:
+                    nombre = input("Ingrese el nuevo nombre: ")
+                    telefono = input("Ingrese el nuevo teléfono: ")
+                    empresa = input("Ingrese la nueva empresa: ")
+                    cargo = input("Ingrese el nuevo cargo: ")
+                    edad = input("Ingrese la nueva edad: ")
+                    correo = input("Ingrese el nuevo correo: ")
+                    whatsapp = input("Ingrese el nuevo número de WhatsApp: ")
+                    facebook = input("Ingrese el nuevo nombre de Facebook: ")
+                    instagram = input("Ingrese el nuevo nombre de Instagram: ")
+                    cursor.execute( 'UPDATE contactop SET nombre = %s, telefono = %s, empresa = %s, cargo = %s, edad = %s, correo = %s, whatsapp = %s, facebook = %s, instagram = %s WHERE id = %s',
+                        (nombre, telefono, empresa, cargo, edad, correo, whatsapp, facebook, instagram, contacto_id))
+                    print("Contacto modificado exitosamente en la tabla contactop.")
+                else:
+                    print("Tabla no válida. No se pudo modificar el contacto.")
+                conexion.commit()
+    except Exception as e:
+        print(f'Ocurrió un error: {e}')
+    finally:
+        if cursor is not None:
+            cursor.close()
 
