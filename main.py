@@ -195,3 +195,39 @@ def modificar_contacto():
         if cursor is not None:
             cursor.close()
 
+
+# Cala Fernando
+# Punto 4
+# Funcion para agregar un evento por fecha
+def agregar_evento(fecha, descripcion):
+    fecha = datetime.strptime(fecha, '%Y-%m-%d').date()  # se convierte la variable fecha de string a tipo date
+    fecha_actual = datetime.now().date()
+    if fecha < fecha_actual:  # condicion para que no se agregue una fecha pasada
+        print("No se puede agregar un evento con una fecha pasada.")
+        return
+    cursor.execute('''
+         INSERT INTO eventos (fecha, descripcion)
+         VALUES (%s, %s)
+     ''', (fecha, descripcion))
+    conexion.commit()
+    print("Evento agregado exitosamente.")
+    # Punto 4
+    # Función para capturar los datos de un evento desde el usuario
+
+
+def capturar_datos_evento():
+    fecha = input("Ingrese la fecha (YYYY-MM-DD): ")
+    descripcion = input("Ingrese la descripción del evento: ")
+    return fecha, descripcion
+
+
+
+###############################################
+#Fabio
+
+
+
+
+
+
+################################################
