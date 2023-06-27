@@ -231,3 +231,29 @@ def capturar_datos_evento():
 
 
 ################################################
+#Punto 8
+# Función para mostrar la lista de contactos
+def mostrar_lista_contactos():
+    cursor.execute("SELECT * FROM contactos ORDER BY nombre ASC") # ejecuta una consulta SQL para seleccionar todos los registros de la tabla "contactos" y ordenarlos en orden ascendente según el campo "nombre"
+    contactos = cursor.fetchall() #  recupera todos los resultados de la consulta ejecutada en la línea anterior y los almacena en la variable contactos
+    if len(contactos) > 0: #  verifica si la longitud de la lista contactos es mayor que cero, es decir, si hay contactos en la lista.
+        print(Fore.YELLOW + Back.BLACK + "Lista de contactos PERSONAL:" + Style.RESET_ALL)
+        for contacto in contactos: # recorre cada elemento de la lista contactos # crea un objeto ContactoPersonal utilizando los valores de las columnas del registro actual.
+            contacto_personal = ContactoPersonal(contacto[0],contacto[1], contacto[2], contacto[3], contacto[4])
+            contacto_personal.mostrar_informacion()
+            print("---") #  imprime una línea separadora después de mostrar la información de cada contacto.
+    else: #Si no hay contactos en la lista, se ejecuta este bloque de código.
+        print("No hay contactos en la agenda.") # imprime por pantalla el mensaje "No hay contactos en la agenda."
+
+#Punto 8
+def mostrar_lista_contactos2():
+    cursor.execute("SELECT * FROM contactop ORDER BY nombre ASC") # ejecuta una consulta SQL para seleccionar todos los registros de la tabla "contactop" y ordenarlos en orden ascendente según el campo "nombre".
+    contactop = cursor.fetchall() # recupera todos los resultados de la consulta ejecutada en la línea anterior y los almacena en la variable contactop
+    if len(contactop) > 0: # verifica si la longitud de la lista contactop es mayor que cero, es decir, si hay contactos en la lista.
+        print(Fore.YELLOW + Back.BLACK + "Lista de contactos PROFESIONAL:" + Style.RESET_ALL) # imprime por pantalla un encabezado utilizando la biblioteca colorama
+        for contacto in contactop: #  inicia un bucle que recorre cada elemento de la lista contactop. En cada iteración, el elemento actual se asigna a la variable contacto.
+            contacto_profesional = ContactoProfesional(contacto[0],contacto[1], contacto[2], contacto[3], contacto[4], contacto[5],contacto[6],contacto[7],contacto[8],contacto[9])
+            contacto_profesional.mostrar_informacion()  # llama al método mostrar_informacion() del objeto contacto_profesional para imprimir la información del contacto en pantalla. 
+            print("---")   # imprime una línea separadora después de mostrar la información de cada contacto.
+    else: # Si no hay contactos en la lista, se ejecuta este bloque de código.
+        print("No hay contactos en la agenda.")
