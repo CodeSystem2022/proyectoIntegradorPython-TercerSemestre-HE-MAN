@@ -138,9 +138,37 @@ def pedir_Datos_Contacto_Profesional():
     instagram = input("Ingrese el perfil de Instagram: ")
     return nombre, telefono, empresa, cargo,edad,correo,whatsapp, facebook, instagram
 
-# ACA PARTE SEBA
-#
-#
+# SEBA BARROS
+def eliminar_contacto():
+    try:
+        tabla = None
+        while tabla not in ["1", "2"]:
+            tabla = input("Ingrese el número de tabla en la que desea eliminar el contacto:\n1. ContactoPersonal\n2. ContactoProfesional\n")
+            if tabla not in ["1", "2"]:
+                print("Opción no válida. Por favor, ingrese 1 o 2.")
+        tabla = int(tabla)
+        contacto_id = None
+        while not isinstance(contacto_id, int):
+            try:
+                contacto_id = int(input("Ingrese el ID del contacto a eliminar: "))
+            except ValueError:
+                print("ID no válido. Por favor, ingrese un número entero.")
+        with conexion:
+            with conexion.cursor() as cursor:
+                if tabla == 1:
+                    cursor.execute('DELETE FROM contactos WHERE id = %s', (contacto_id,))
+                    print("Contacto eliminado exitosamente de la tabla contactos.")
+                elif tabla == 2:
+                    cursor.execute('DELETE FROM contactop WHERE id = %s', (contacto_id,))
+                    print("Contacto eliminado exitosamente de la tabla contactop.")
+                else:
+                    print("Tabla no válida. No se pudo eliminar el contacto.")
+                conexion.commit()
+    except Exception as e:
+        print(f'Ocurrió un error: {e}')
+    finally:
+        if cursor is not None:
+            cursor.close()
 
 # Función para modificar un contacto en la base de datos
 #Punto3
