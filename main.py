@@ -13,11 +13,11 @@ colorama.init()
 
 # Conexión a la base de datos PostgreSQL
 conexion = psycopg2.connect(
-    user='root',
-    host="192.168.10.2",
+    user='postgres',
+    host="127.0.0.1",
     port="5432",
     database="agenda.db",
-    password="root"
+    password="admin"
 )
 
 cursor = conexion.cursor()
@@ -38,6 +38,7 @@ def mostrar_menu():
     print(Fore.CYAN+"8. Mostrar lista de contactos"+ Style.RESET_ALL)
     print(Fore.CYAN+"9. Salir"+ Style.RESET_ALL)
 # Emmanuel Sbona
+# Función para mostrar el menú principal
 def leer_opcion():
     while True:
         try:
@@ -138,7 +139,9 @@ def pedir_Datos_Contacto_Profesional():
     instagram = input("Ingrese el perfil de Instagram: ")
     return nombre, telefono, empresa, cargo,edad,correo,whatsapp, facebook, instagram
 
+
 # SEBA BARROS
+# Función para eliminar un contacto de la base de datos usando transacciones
 def eliminar_contacto():
     try:
         tabla = None
@@ -169,6 +172,7 @@ def eliminar_contacto():
     finally:
         if cursor is not None:
             cursor.close()
+
 
 # Función para modificar un contacto en la base de datos
 #Punto3
@@ -220,7 +224,6 @@ def modificar_contacto():
         if cursor is not None:
             cursor.close()
 
-
 # Cala Fernando
 # Punto 4
 # Funcion para agregar un evento por fecha
@@ -236,15 +239,14 @@ def agregar_evento(fecha, descripcion):
      ''', (fecha, descripcion))
     conexion.commit()
     print("Evento agregado exitosamente.")
-    # Punto 4
-    # Función para capturar los datos de un evento desde el usuario
 
 
+# Punto 4
+# Función para capturar los datos de un evento desde el usuario   
 def capturar_datos_evento():
     fecha = input("Ingrese la fecha (YYYY-MM-DD): ")
     descripcion = input("Ingrese la descripción del evento: ")
     return fecha, descripcion
-
 
 #Fabio Javier Flores
 #Punto 5
@@ -271,8 +273,6 @@ def eliminar_evento_por_fecha(fecha):
     cursor.execute(" DELETE FROM eventos WHERE fecha = %s", (fecha,))
     conexion.commit()
     print("Evento eliminado exitosamente.")
-
-
 
 #Punto 7
 # Función para buscar contactos por nombre
@@ -327,8 +327,6 @@ def mostrar_lista_contactos2():
         print("No hay contactos en la agenda.")
 
 
-
-###############################
 # Función para ejecutar la agenda
 def ejecutar_agenda():
     while True:
@@ -376,7 +374,6 @@ def ejecutar_agenda():
             break
     conexion.close()
     print("¡Hasta la proxima amigo!")
-
 
 
 # Ejecutamos la agenda
