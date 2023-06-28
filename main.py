@@ -246,16 +246,34 @@ def capturar_datos_evento():
     return fecha, descripcion
 
 
+#Fabio Javier Flores
+#Punto 5
+# Función para visualizar eventos en una fecha determinada
+def visualizar_eventos(fecha):
+    cursor.execute('''
+        SELECT  eventos.descripcion
+        FROM eventos
+        WHERE eventos.fecha = %s
+    ''', (fecha,))
+    eventos = cursor.fetchall()
 
-###############################################
-#Fabio
+    if len(eventos) > 0:
+        print("Eventos para la fecha", fecha)
+        for evento in eventos:
+            print("Descripción:", evento[0])
+            print("---")
+    else:
+        print("No hay eventos para la fecha", fecha)
+
+#Punto 6
+#funcion para borrar evento
+def eliminar_evento_por_fecha(fecha):
+    cursor.execute(" DELETE FROM eventos WHERE fecha = %s", (fecha,))
+    conexion.commit()
+    print("Evento eliminado exitosamente.")
 
 
 
-
-
-
-################################################
 #Punto 7
 # Función para buscar contactos por nombre
 def buscar_contacto(nombre):
