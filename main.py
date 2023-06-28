@@ -13,11 +13,11 @@ colorama.init()
 
 # Conexión a la base de datos PostgreSQL
 conexion = psycopg2.connect(
-    user='postgres',
-    host="127.0.0.1",
+    user='root',
+    host="192.168.10.2",
     port="5432",
     database="agenda.db",
-    password="admin"
+    password="root"
 )
 
 cursor = conexion.cursor()
