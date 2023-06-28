@@ -256,6 +256,31 @@ def capturar_datos_evento():
 
 
 ################################################
+#Punto 7
+# Función para buscar contactos por nombre
+def buscar_contacto(nombre):
+    cursor.execute("SELECT * FROM contactos WHERE nombre ILIKE %s", ('%' + nombre + '%',))
+    resultados = cursor.fetchall()
+    if len(resultados) > 0:
+        print("Resultados de búsqueda:")
+        for resultado in resultados:
+            print(resultado)
+    else:
+        print(Fore.GREEN+"No se encontraron contactos con ese nombre."+Style.RESET_ALL)
+
+
+#Punto 7
+# Función para buscar contactos por nombre para la otra tabla
+def buscar_contacto2(nombre):
+    cursor.execute("SELECT * FROM contactop WHERE nombre ILIKE %s", ('%' + nombre + '%',))
+    resultados = cursor.fetchall()
+    if len(resultados) > 0:
+        print("Resultados de búsqueda:")
+        for resultado in resultados:
+            print(resultado)
+    else:
+        print(Fore.GREEN+"No se encontraron contactos con ese nombre."+Style.RESET_ALL)
+
 #Punto 8
 # Función para mostrar la lista de contactos
 def mostrar_lista_contactos():
