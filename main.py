@@ -257,3 +257,59 @@ def mostrar_lista_contactos2():
             print("---")   # imprime una línea separadora después de mostrar la información de cada contacto.
     else: # Si no hay contactos en la lista, se ejecuta este bloque de código.
         print("No hay contactos en la agenda.")
+
+
+
+###############################
+# Función para ejecutar la agenda
+def ejecutar_agenda():
+    while True:
+        mostrar_menu()
+        opcion = leer_opcion()
+
+        if opcion == 1:
+            datos_menu_dos()
+        elif opcion == 2:
+            eliminar_contacto()
+        elif opcion == 3:
+            modificar_contacto()
+        elif opcion == 4:
+            fecha, descripcion = capturar_datos_evento()
+            cursor.execute('SELECT * FROM contactos')
+            contactos = cursor.fetchall()
+            agregar_evento(fecha, descripcion)
+
+        elif opcion == 5:
+            fecha = input("Ingrese la fecha a visualizar (YYYY-MM-DD): ")
+            visualizar_eventos(fecha)
+        elif opcion == 6:
+            fecha = (input("Digite la fecha (YYYY-MM-DD) del evento a ELIMINAR"))
+            eliminar_evento_por_fecha(fecha)
+        elif opcion == 7:
+            while True:
+                print(Fore.YELLOW + "1. Contacto Profesional" + Style.RESET_ALL)
+                print(Fore.YELLOW + "2. Contacto Personal" + Style.RESET_ALL)
+                print(Fore.YELLOW + "3. Volver al Menu Principal" + Style.RESET_ALL)
+                tabla = input("Seleccione el tipo de CONTACTO")
+                if tabla == "1":
+                    nombre = input("Ingrese el nombre del contacto a buscar: ")
+                    buscar_contacto2(nombre)
+                elif tabla == "2":
+                    nombre = input("Ingrese el nombre del contacto a buscar: ")
+                    buscar_contacto(nombre)
+                elif tabla == "3":
+                    ejecutar_agenda()
+                else:
+                    print("seleccione una opcion CORRECTA")
+        elif opcion == 8:
+            mostrar_lista_contactos()
+            mostrar_lista_contactos2()
+        elif opcion == 9:
+            break
+    conexion.close()
+    print("¡Hasta la proxima amigo!")
+
+
+
+# Ejecutamos la agenda
+ejecutar_agenda()
