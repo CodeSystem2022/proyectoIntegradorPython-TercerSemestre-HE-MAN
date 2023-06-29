@@ -352,7 +352,6 @@ def ejecutar_agenda():
             fecha = (input("Digite la fecha (YYYY-MM-DD) del evento a ELIMINAR"))
             eliminar_evento_por_fecha(fecha)
         elif opcion == 7:
-            while True:
                 print(Fore.YELLOW + "1. Contacto Profesional" + Style.RESET_ALL)
                 print(Fore.YELLOW + "2. Contacto Personal" + Style.RESET_ALL)
                 print(Fore.YELLOW + "3. Volver al Menu Principal" + Style.RESET_ALL)
