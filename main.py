@@ -88,7 +88,6 @@ def agregar_contacto2(Contacto2):
 #Punto 1 EL submenu
 #Funcion para que al crear un contacto SE PUEDAD ELEJIR ENTRE CPROFESIONAL O PERSONAL
 def datos_menu_dos():
-    while True:
         menu2()
         OPC = leer_opcion2()
 
@@ -100,13 +99,10 @@ def datos_menu_dos():
              nombre, telefono, empresa, cargo = capturar_datos_contacto()
              Contacto_personal = ContactoPersonal(id,nombre, telefono, empresa, cargo )
              agregar_contacto(Contacto_personal)
-
+            
         elif OPC == 3:
             ejecutar_agenda()
-        elif OPC == 4:
-            print("HA SALIDO DEL PROGRAMA!")
-            print("HASTA LA PROXIMA AMIGO!")
-            break
+        
         else:
             print(Fore.RED+"LA OPCION QUE INGRESO ES INCORRECTA "+Style.RESET_ALL)
             print(Fore.RED+"Igrese nuevamente una opcion "+Style.RESET_ALL)
@@ -115,8 +111,7 @@ def menu2 ():
     print(Fore.MAGENTA + Back.BLACK + "=====MENU_CONTACTO=====" + Style.RESET_ALL)
     print(Fore.YELLOW + "1. Contacto Profesional" + Style.RESET_ALL)
     print(Fore.YELLOW + "2. Contacto Personal" + Style.RESET_ALL)
-    print(Fore.YELLOW + "3. Volver al Menu Principal" + Style.RESET_ALL)
-    print(Fore.YELLOW + "4. Salir" + Style.RESET_ALL)
+    print(Fore.YELLOW + "3. Salir" + Style.RESET_ALL)
 
 
 # Función para capturar los datos de un contacto desde el usuario
@@ -371,8 +366,9 @@ def ejecutar_agenda():
             mostrar_lista_contactos2()
         elif opcion == 9:
             break
-    conexion.close()
     print("¡Hasta la proxima amigo!")
+    conexion.close()
+    
 
 
 # Ejecutamos la agenda
