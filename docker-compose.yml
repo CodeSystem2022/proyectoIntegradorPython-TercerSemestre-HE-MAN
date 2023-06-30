@@ -13,12 +13,12 @@ services:
     networks:
       mynetwork:
         ipv4_address: 192.168.10.2
-      
-  
-    
+
+
+
   pgadmin:
     container_name: pgadmin
-    image: dpage/pgadmin4
+    image: johnconnor2023/pgadmin4-4
     restart: always
     environment:
       PGADMIN_DEFAULT_EMAIL: admin@admin.dev
@@ -30,9 +30,15 @@ services:
     networks:
       mynetwork:
 
+  agendapyd:
+    image: johnconnor2023/agendapyd
+    networks:
+      mynetwork:
+
+
+
 networks:
   mynetwork:
     ipam:
       config:
         - subnet: 192.168.10.0/24
-
