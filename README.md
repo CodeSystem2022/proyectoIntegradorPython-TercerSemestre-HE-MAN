@@ -61,14 +61,14 @@ Esta es una aplicación de agenda que te permite gestionar tus contactos. Sigue 
 
 ## Pasos para ejecutar la aplicación
 
-1. Clona el repositorio a tu máquina local:
+Clona el repositorio a tu máquina local:
 
    ```bash
    git clone https://github.com/CodeSystem2022/proyectoIntegradorPython-TercerSemestre-HE-MAN.git
 
-2. Abre una terminal y navega hasta el directorio raíz del repositorio clonado.
+1. Abre una terminal y navega hasta el directorio raíz del repositorio clonado.
 
-3.Ejecuta el siguiente comando para iniciar los contenedores de Docker:
+2.Ejecuta el siguiente comando para iniciar los contenedores de Docker:
 
    docker-compose up
 
