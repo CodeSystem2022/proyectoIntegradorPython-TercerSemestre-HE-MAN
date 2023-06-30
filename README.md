@@ -51,3 +51,52 @@
     </td>
   </tr>
 </table>
+
+
+PASOS PARA UTILIZAR LA AGENDA:
+
+# agendapyd
+
+Esta es una aplicación de agenda que te permite gestionar tus contactos. Sigue los pasos a continuación para configurar y ejecutar la aplicación.
+
+## Pasos para ejecutar la aplicación
+
+1. Clona el repositorio a tu máquina local:
+
+   ```bash
+   git clone https://github.com/CodeSystem2022/proyectoIntegradorPython-TercerSemestre-HE-MAN.git
+
+2. Abre una terminal y navega hasta el directorio raíz del repositorio clonado.
+
+3.Ejecuta el siguiente comando para iniciar los contenedores de Docker:
+
+   docker-compose up
+
+Esto descargará las imágenes necesarias (pgadmin4, postgres y agendapyd) y creará los contenedores correspondientes.
+
+3. Abre tu navegador web y accede a la siguiente URL: http://localhost:5050
+
+4. Una vez en la página de pgAdmin4, realiza los siguientes pasos:
+
+Haz clic derecho en "Server" y selecciona "Register" > "Server".
+En el campo "Name", introduce "postgres".
+En la pestaña "Connection", en el campo "Host", introduce "postgres".
+En el campo "Maintenance database", introduce "root".
+En los campos "Username" y "Password", introduce "root".
+Guarda los cambios para establecer la conexión a la base de datos "agenda.db".
+Abre una nueva terminal y ejecuta el siguiente comando para iniciar el contenedor de agendapyd en una terminal bash:
+  docker run -it --network=agendapyd_mynetwork johnconnor2023/agendapyd /bin/bash
+
+6. Una vez dentro del contenedor, ejecuta el siguiente comando para iniciar la aplicación de agenda:
+
+   python ./main.py
+
+¡Listo! Ahora los contenedores están en funcionamiento y la aplicación de agenda está ejecutándose.
+
+Recuerda que estos pasos asumen que tienes Docker y Docker Compose instalados en tu máquina. Asegúrate de cumplir con los requisitos antes de ejecutar la aplicación. Si tienes algún problema o pregunta, no dudes en abrir un issue en este repositorio.
+
+
+
+
+
+
