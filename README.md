@@ -68,7 +68,7 @@ Clona el repositorio a tu máquina local:
 
 1. Abre una terminal y navega hasta el directorio raíz del repositorio clonado.
 
-2.Ejecuta el siguiente comando para iniciar los contenedores de Docker:
+2. Ejecuta el siguiente comando para iniciar los contenedores de Docker:
 
    docker-compose up
 
