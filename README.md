@@ -94,7 +94,7 @@ Abre una nueva terminal y ejecuta el siguiente comando para iniciar el contenedo
 ¡Listo! Ahora los contenedores están en funcionamiento y la aplicación de agenda está ejecutándose.
 
 Recuerda que estos pasos asumen que tienes Docker y Docker Compose instalados en tu máquina. Asegúrate de cumplir con los 
-requisitos antes de ejecutar la aplicación. Si tienes algún problema o pregunta, no dudes en abrir un issue en este repositorio.
+requisitos antes de ejecutar la aplicación. Si tienes algún problema o pregunta, no dudes en abrir un issue en este repositorio!!
 
 
 
